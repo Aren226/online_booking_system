@@ -10,8 +10,10 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import MainLayout from "./layouts/MainLayout";
-import AddPage from "./pages/AddPage";
+import AddVehiclePage from "./pages/AddVehiclePage";
 import VehiclePage from "./pages/VehiclePage";
+import LoginPage from "./pages/LoginPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -24,7 +26,7 @@ function App() {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        console.log(response.json)
+        console.log(response.json);
         return response.json();
       })
       .then((data) => setCars(data))
@@ -33,13 +35,26 @@ function App() {
         setMessage("Failed to load cars");
       });
   }, []);
+
+  const addJob = async (newJob) => {
+    const res = await fetch('/api/jobs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newJob),
+    });
+    return;
+  };
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path='/' element={<MainLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path='/cars/:id' element={<VehiclePage />} />
-        {/* <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob} />} />
-        <Route
+      <>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/cars/:id" element={<VehiclePage />} />
+          <Route path='/add-car' element={<AddVehiclePage addJobSubmit={addJob} />} />
+        {/* <Route
           path='/edit-job/:id'
           element={<EditJobPage updateJobSubmit={updateJob} />}
           loader={jobLoader}
@@ -48,54 +63,13 @@ function App() {
           path='/jobs/:id'
           element={<JobPage deleteJob={deleteJob} />}
           loader={jobLoader}
-        />
-        <Route path='*' element={<NotFoundPage />} /> */}
-      </Route>
+        /> */}
+        <Route path='*' element={<NotFoundPage />} />
+        </Route>
+      </>
     )
   );
-  // return (
-    // <>
-    //   <HomePage />
-    //   <div className="App">
-    //     <header className="App-header">
-    //       {message ? <p>{message}</p> : null}
-    //       <ul>
-    //         {cars.map((car) => (
-    //           <li key={car.id}>{car.make} {car.model}</li>
-    //         ))}
-    //       </ul>
-    //     </header>
-    //   </div>
-    //   <div>
-    //     <a href="https://vitejs.dev" target="_blank">
-    //       <img src={viteLogo} className="logo" alt="Vite logo" />
-    //     </a>
-    //     <a href="https://react.dev" target="_blank">
-    //       <img src={reactLogo} className="logo react" alt="React logo" />
-    //     </a>
-    //   </div>
-    //   <h1>Vite + React</h1>
-    //   <div className="card">
-    //     <button onClick={() => setCount((count) => count + 1)}>
-    //       count is {count}
-    //     </button>
-    //     <p>
-    //       Edit <code>src/App.jsx</code> and save to test HMR
-    //     </p>
-    //   </div>
-    //   <p className="read-the-docs">
-    //     Click on the Vite and React logos to learn more
-    //   </p>
-    // </>
-
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route path="/" element={<MainLayout />} />
-    //     <Route index element={<HomePage/>}/>
-    //   </Routes>
-    // </BrowserRouter>
-    return (<RouterProvider router={router} />);
-  // );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import VehiclePage from "../pages/VehiclePage";
 
 const VehicleList = ({ vehicle }) => {
+  const storedRole = localStorage.getItem("role");
+
   const getImage = (vehicle_image) => {
     return new URL(`../assets/vehicles_image/${vehicle_image}`, import.meta.url)
       .href;
@@ -19,7 +21,7 @@ const VehicleList = ({ vehicle }) => {
           </div>
         </div>
 
-        <div className="mb-5">{vehicle.specification}</div>
+        <div className="mb-5">{vehicle.specifications}</div>
 
         <h3 className="text-indigo-500 mb-2">
           {vehicle.price_per_day} SGD / Day
@@ -33,7 +35,7 @@ const VehicleList = ({ vehicle }) => {
             to={`/cars/${vehicle.id}`}
             className="h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm"
           >
-            Booking Now
+            {storedRole === "admin"?"View Now":"Booking Now"}
           </Link>
         </div>
       </div>

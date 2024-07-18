@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import VehicleList from "../components/VehicleList";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [vehicles, setVehicles] = useState([]);
-
+  const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+  const storedRole = localStorage.getItem("role");
+  console.log(storedRole);
+  const navigate = useNavigate();
   useEffect(() => {
+    if(!storedRole){
+      navigate('/login');
+    }
     fetch("/api/cars")
       .then((response) => {
         if (!response.ok) {
