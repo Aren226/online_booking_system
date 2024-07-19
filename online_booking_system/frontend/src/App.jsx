@@ -36,16 +36,6 @@ function App() {
       });
   }, []);
 
-  const addJob = async (newJob) => {
-    const res = await fetch('/api/jobs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newJob),
-    });
-    return;
-  };
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
@@ -53,7 +43,7 @@ function App() {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="/cars/:id" element={<VehiclePage />} />
-          <Route path='/add-car' element={<AddVehiclePage addJobSubmit={addJob} />} />
+          <Route path='/add-car' element={<AddVehiclePage  />} />
         {/* <Route
           path='/edit-job/:id'
           element={<EditJobPage updateJobSubmit={updateJob} />}

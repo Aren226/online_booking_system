@@ -7,8 +7,11 @@ from PIL import Image
 from io import BytesIO
 import os
 import datetime
+from flask_cors import CORS
+ 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/login", methods=['POST'])
@@ -137,4 +140,4 @@ def store_image(image_url):
 
 if __name__ == "__main__":
     print(Booking.generate_booking_id())
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5001)

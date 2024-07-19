@@ -5,7 +5,6 @@ import DatePicker, { Calendar } from "react-multi-date-picker";
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import moment from "moment";
 import PopUp from "../components/PopUp";
-import { ReactSession } from "react-client-session";
 import EditCar from "../components/EditCar";
 import { toast } from "react-toastify";
 
