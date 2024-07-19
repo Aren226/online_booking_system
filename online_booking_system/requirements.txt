@@ -1,4 +1,4 @@
-flask
-axios
-https://www.geeksforgeeks.org/how-proxy-backend-server-using-react-js/
-pip install flask-cors
+Flask
+pillow
+moment
+Flask-Cors

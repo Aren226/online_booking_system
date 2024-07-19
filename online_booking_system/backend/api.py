@@ -140,4 +140,5 @@ def store_image(image_url):
 
 if __name__ == "__main__":
     print(Booking.generate_booking_id())
-    app.run(host='0.0.0.0', port=5001)
+    app.run()
+    # app.run(host='0.0.0.0', port=5001)

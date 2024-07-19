@@ -64,10 +64,9 @@ def create_database():
                        ('Tesla Model 3', 'SBA1236E', 70.00, 'tesla.jpeg', 'Automatic, 4-door, AC, Radio, Electric', 0);''')
 
         cursor.execute('''INSERT INTO users (username, password, phone_number, email, is_deleted) VALUES 
-                       ('admin', 'password123', '+65 8123 4567', 'admin@example.com', 0),
-                       ('user1', 'mypassword', '+65 9234 5678', 'user1@example.com', 0),
-                       ('user2', 'securepassword', '+65 6123 4567', 'user2@example.com', 0),
-                       ('user3', 'user3password', '+65 6345 6789', 'user3@example.com', 0)''')
+                       ('user1', 'mypassword', '+65 9234 5678', 'user1@gmail.com', 0),
+                       ('user2', 'securepassword', '+65 6123 4567', 'user2@gmail.com', 0),
+                       ('user3', 'user3password', '+65 6345 6789', 'user3@gmail.com', 0)''')
         print("Successful insert data")
         conn.commit()
     except sqlite3.Error as e:
